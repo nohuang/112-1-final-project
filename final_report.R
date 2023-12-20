@@ -40,3 +40,26 @@ names(summarise2) <-
   split_dg6_2$"15 ~ 19歲"$年度
 
 summarise2
+
+#pie chart
+dg6 |>
+  dplyr::select(
+    3:21
+  ) |>
+  dplyr::filter(
+    項目別=="-"
+  ) -> dg6_filtered_3
+
+View(dg6_filtered_3)
+
+x <- as.numeric(dg6_filtered_3[1, ][4:19])
+labels <- c(colnames(dg6_filtered_3[1, ][4:19]))
+
+# Give the chart file a name.
+png(file = "103.jpg")
+
+# Plot the chart.
+pie(x,labels)
+
+# Save the file.
+dev.off()
